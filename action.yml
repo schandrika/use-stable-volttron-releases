@@ -17,5 +17,5 @@ runs:
       shell: bash
     - name: Remove pre-release=true for volttron libs
       id: remove-pre-release-dependency
-      run: python src/update_toml.py
+      run: python $GITHUB_ACTION_PATH/../src/update_toml.py
       shell: bash
