@@ -1,9 +1,6 @@
 # action.yaml
 name: 'Custom GitHub Action'
 description: 'A GitHub Action that takes an input and returns the square of the number'
-inputs:
-
-outputs:
 
 runs:
   using: 'composite'
