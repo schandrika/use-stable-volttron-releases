@@ -5,10 +5,10 @@ import os
 def main():
     print(os.listdir(os.environ["PWD"]))
     client = Github()
-    client.get_repo(os.environ["GITHUB_REPOSITORY"])
-
-    with open('pyproject.toml', 'r') as f:
-        toml_dict = toml.load(f)
+    repo = client.get_repo(os.environ["GITHUB_REPOSITORY"])
+    f = repo.get_contents("pyproject.toml")
+    #with open('pyproject.toml', 'r') as f:
+    toml_dict = toml.loads(f)
     dependencies_ = toml_dict['tool']['poetry']['dependencies']
     for lib in dependencies_:
         if lib.startswith("fake"):
