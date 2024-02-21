@@ -3,7 +3,7 @@ from github import Github
 import os
 
 def main():
-    print(os.environ)
+    print(os.listdir(os.environ("PWD")))
     client = Github()
     client.get_repo(os.environ["GITHUB_REPOSITORY"])
 
