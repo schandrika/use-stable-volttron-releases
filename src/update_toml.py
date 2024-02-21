@@ -3,10 +3,10 @@ from github import Github
 import os
 
 def main():
-    print(os.listdir(os.environ["PWD"]))
     client = Github()
     repo = client.get_repo(os.environ["GITHUB_REPOSITORY"])
     f = repo.get_contents("pyproject.toml")
+    print(f"FILE CONTENTS:\n* {f} \n*")
     #with open('pyproject.toml', 'r') as f:
     toml_dict = toml.loads(f)
     dependencies_ = toml_dict['tool']['poetry']['dependencies']
