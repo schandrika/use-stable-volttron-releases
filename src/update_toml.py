@@ -4,8 +4,8 @@ import os
 
 def main():
     print(os.environ)
-    client = Github(os.environ["token"])
-    client.get_repo(os.environ["repository"])
+    client = Github()
+    client.get_repo(os.environ["GITHUB_REPOSITORY"])
 
     with open('pyproject.toml', 'r') as f:
         toml_dict = toml.load(f)
