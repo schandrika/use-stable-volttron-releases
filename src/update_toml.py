@@ -19,8 +19,13 @@ def main():
                 dependencies_[lib] = dependencies_[lib]["version"]
 
     print(f"updated toml dict {toml_dict}")
-    repo.update_file("pyporoject.toml", "Auto updated to point to stable volttron releases",
-                     toml.dump(toml_dict), contentfile.sha)
+    try:
+        result = repo.update_file("pyporoject.toml", "Auto updated to point to stable volttron releases",
+                         toml.dump(toml_dict), contentfile.sha)
+        print(f"Result of update : {result}")
+    except Exception as e:
+        print(f"Exception raised while updating {e}")
+        raise e
 
 
 if __name__ == "__main__":
