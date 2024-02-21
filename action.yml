@@ -2,6 +2,16 @@
 name: 'Custom GitHub Action'
 description: 'A GitHub Action that takes an input and returns the square of the number'
 
+inputs:
+  token:
+    description: "GitHub Token (env GITHUB_TOKEN)"
+    required: false
+    default: ${{ secrets.GITHUB_TOKEN }}
+  repository:
+    description: "GitHub repository name (env GITHUB_REPOSITORY)"
+    required: false
+    default: $${ env.GITHUB_REPOSITORY }}
+
 runs:
   using: 'composite'
   steps:
