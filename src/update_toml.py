@@ -5,9 +5,9 @@ import os
 def main():
     client = Github()
     repo = client.get_repo(os.environ["GITHUB_REPOSITORY"])
-    string_content = repo.get_contents("pyproject.toml").decoded_content.decode("utf-8")
+    contentfile = repo.get_contents("pyproject.toml")
+    string_content = contentfile.decoded_content.decode("utf-8")
     print(f"FILE CONTENTS:\n* {string_content} \n*")
-    #with open('pyproject.toml', 'r') as f:
     toml_dict = toml.loads(string_content)
     dependencies_ = toml_dict['tool']['poetry']['dependencies']
     for lib in dependencies_:
@@ -18,8 +18,9 @@ def main():
                 # so use just version. Could switch to tomllib with python 3.11
                 dependencies_[lib] = dependencies_[lib]["version"]
 
-    with open('new_toml_file.toml', 'w') as f:
-        toml.dump(toml_dict, f)
+    print(f"updated toml dict {toml_dict}")
+    repo.update_file("pyporoject.toml", "Auto updated to point to stable volttron releases",
+                     toml.dump(toml_dict), contentfile.sha)
 
 
 if __name__ == "__main__":
