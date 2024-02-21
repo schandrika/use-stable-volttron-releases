@@ -3,6 +3,7 @@ from github import Github
 import os
 
 def main():
+    print(os.environ)
     client = Github(os.environ["GITHUB_TOKEN"])
     client.get_repo(os.environ["GITHUB_REPOSITORY"])
 
