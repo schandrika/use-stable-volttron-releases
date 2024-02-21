@@ -11,11 +11,14 @@ def main():
     toml_dict = toml.loads(string_content)
     dependencies_ = toml_dict['tool']['poetry']['dependencies']
     for lib in dependencies_:
-        if lib.startswith("fake"):
+        if lib.startswith("volttron"):
             # if it has a pre-release=true flag, remove that flag
             if isinstance(dependencies_[lib], dict) and dependencies_[lib].get('allow-prereleases'):
-                # del lib_details['allow-prereleases']  # this create dependencies.volttron-something as a new config entry
-                # so use just version. Could switch to tomllib with python 3.11
+                # del lib_details['allow-prereleases']  # this create dependencies.volttron-<xx> as a new config entry
+                # i.e. toml library doesn't handle nested dict well. so for now use just version.
+                # this should be okay for now as we don't use anything other than version and allow-prereleases for
+                # volttron dependencies
+                # Could switch to tomllib with python 3.11
                 dependencies_[lib] = dependencies_[lib]["version"]
 
     try:
