@@ -3,7 +3,7 @@ from github import Github
 import os
 
 def main():
-    client = Github()
+    client = Github(os.environ["GITHUB_TOKEN"])
     repo = client.get_repo(os.environ["GITHUB_REPOSITORY"])
     contentfile = repo.get_contents("pyproject.toml")
     string_content = contentfile.decoded_content.decode("utf-8")
