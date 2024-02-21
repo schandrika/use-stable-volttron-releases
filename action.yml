@@ -3,6 +3,10 @@ name: 'Custom GitHub Action'
 description: 'A GitHub Action that takes an input and returns the square of the number'
 
 inputs:
+  token:
+    description: "GitHub Token (env GITHUB_TOKEN)"
+    required: false
+    default: ${{ github.token }}
   repository:
     description: "GitHub repository name (env GITHUB_REPOSITORY)"
     required: false
@@ -23,5 +27,5 @@ runs:
       shell: bash
     - name: Remove pre-release=true for volttron libs
       id: remove-pre-release-dependency
-      run: python $GITHUB_ACTION_PATH/src/update_toml.py ${{ secrets.GITHUB_TOKEN }}
+      run: python $GITHUB_ACTION_PATH/src/update_toml.py
       shell: bash
