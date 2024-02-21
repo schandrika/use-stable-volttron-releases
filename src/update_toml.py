@@ -6,7 +6,7 @@ def main():
     client = Github()
     repo = client.get_repo(os.environ["GITHUB_REPOSITORY"])
     string_content = repo.get_contents("pyproject.toml").decoded_content.decode("utf-8")
-    print(f"FILE CONTENTS:\n* {f} \n*")
+    print(f"FILE CONTENTS:\n* {string_content} \n*")
     #with open('pyproject.toml', 'r') as f:
     toml_dict = toml.loads(string_content)
     dependencies_ = toml_dict['tool']['poetry']['dependencies']
