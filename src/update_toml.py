@@ -5,7 +5,7 @@ import os
 def main():
     client = Github()
     repo = client.get_repo(os.environ["GITHUB_REPOSITORY"])
-    f = repo.get_contents("pyproject.toml")
+    f = repo.get_contents("pyproject.toml").content
     print(f"FILE CONTENTS:\n* {f} \n*")
     #with open('pyproject.toml', 'r') as f:
     toml_dict = toml.loads(f)
