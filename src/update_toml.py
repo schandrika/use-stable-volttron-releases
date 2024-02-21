@@ -20,7 +20,7 @@ def main():
 
     print(f"updated toml dict {toml_dict}")
     try:
-        result = repo.update_file("pyporoject.toml", "Auto updated to point to stable volttron releases",
+        result = repo.update_file("/pyporoject.toml", "Auto updated to point to stable volttron releases",
                          toml.dumps(toml_dict), contentfile.sha)
         print(f"Result of update : {result}")
     except Exception as e:
