@@ -7,7 +7,7 @@ def main():
     repo = client.get_repo(os.environ["GITHUB_REPOSITORY"])
     contentfile = repo.get_contents("pyproject.toml")
     string_content = contentfile.decoded_content.decode("utf-8")
-    print(f"FILE CONTENTS:\n* {string_content} \n*")
+    print(f"GOT token {os.environ['GITHUB_TOKEN']}")
     toml_dict = toml.loads(string_content)
     dependencies_ = toml_dict['tool']['poetry']['dependencies']
     for lib in dependencies_:
@@ -18,7 +18,6 @@ def main():
                 # so use just version. Could switch to tomllib with python 3.11
                 dependencies_[lib] = dependencies_[lib]["version"]
 
-    print(f"updated toml dict {toml_dict}")
     try:
         result = repo.update_file("/pyporoject.toml", "Auto updated to point to stable volttron releases",
                          toml.dumps(toml_dict), contentfile.sha)

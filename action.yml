@@ -7,10 +7,6 @@ inputs:
     description: "GitHub Token (env GITHUB_TOKEN)"
     required: false
     default: ${{ github.token }}
-#  repository:
-#    description: "GitHub repository name (env GITHUB_REPOSITORY)"
-#    required: false
-#    default: $${ env.GITHUB_REPOSITORY }}
 
 runs:
   using: 'composite'
