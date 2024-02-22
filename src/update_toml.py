@@ -22,7 +22,7 @@ def main():
                 dependencies_[lib] = dependencies_[lib]["version"]
 
     try:
-        result = repo.update_file("pyporoject.toml", "Auto updated to point to stable volttron releases",
+        result = repo.update_file("pyproject.toml", "Auto updated to point to stable volttron releases",
                          toml.dumps(toml_dict), contentfile.sha)
         print(f"Result of update : {result}")
     except Exception as e:
