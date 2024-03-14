@@ -27,3 +27,4 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
+        BRANCH: ${{ inputs.branch }}
